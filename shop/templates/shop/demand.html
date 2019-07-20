@@ -21,17 +21,15 @@
                                         <th scope="col">SL No.</th>
                                         <th scope="col">Item</th>
                                         <th scope="col">Quantity</th>
-                                        <th scope="col">Edit/Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for item in demands_all %}
+                                    {% for item in object %}
                 
                                             <tr class="bg-info text-light">
                                             <td>{{ forloop.counter}}</td>
                                             <td>{{ item.Item }}</td>
                                             <td>{{ item.Quantity }}</td>
-                                            <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'shop:delete' item.id %}"><i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>
                                             </tr>
                 
                                     {% endfor %}

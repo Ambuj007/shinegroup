@@ -1,5 +1,5 @@
 .bg-image{
-background: url(../images/mbbjpg.jpg)  !important;
+background: url(https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/mbbjpg.jpg)  !important;
 }
 .logo{
 font-size:30px !important;
@@ -18,7 +18,7 @@ font-size:30px !important;
 
 .my-custom-scrollbar {
     position: relative;
-    height: 80%;
+    height: 60%;
     width: 100%;
     overflow: auto;
 }
