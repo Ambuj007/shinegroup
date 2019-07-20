@@ -1,1 +1,1 @@
-web: gunicorn signgroup.wsgi
+web: gunicorn shinegroup.wsgi
