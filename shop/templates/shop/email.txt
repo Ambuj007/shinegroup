@@ -1,0 +1,8 @@
+Hello Shine,
+
+{{ message }}
+
+My contact Number is : {{ phone }}
+
+Thanks
+{{ name }}

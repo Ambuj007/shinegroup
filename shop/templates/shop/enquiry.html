@@ -1,0 +1,81 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block main_content %}
+
+        <div class="container-fluid marketing mb-5">
+
+            <div class="row">
+                <div class="offset-lg-4 offset-md-4 offset-sm-4 offset-xs-4 col-6 pt-3">
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12 col-xs-12">
+                            <form class="form-inline ml-2 text-light font-weight-bold" action="{% url 'shop:enquiry' %}">
+                                <select name="search_item" class="select form-control" id="id_Item">
+                                    <option value="" selected="">Select.....</option>
+                                    <option value="Accessories">Accessories</option>
+                                    <option value="Antivirus">Antivirus</option>
+                                    <option value="CCTV">CCTV</option>
+                                    <option value="Cabinet">Cabinet</option>
+                                    <option value="Cartriadge">Cartriadge</option>
+                                    <option value="Keyboard">Keyboard</option>
+                                    <option value="Mouse">Mouse</option>
+                                    <option value="RAM">RAM</option>
+                                    <option value="GC">Graphic Card</option>
+                                    <option value="DVDRW">DVD RW</option>
+                                    <option value="Headphones">Headphones</option>
+                                    <option value="Mobile_accessories">Mobile accessories</option>
+                                    <option value="Others">Others</option>
+                                    <option value="Printer">Printer</option>
+                                    <option value="Router">Router</option>
+                                    <option value="Smps">SMPS</option>
+                                    <option value="Speakers">Speakers</option>
+                                    <option value="PD">Pen Drive</option>
+                                    <option value="Memory">Memory Card</option>
+                                    <option value="HDD">Hard Disk</option>
+                                    <option value="Ups">UPS</option>
+                                    <option value="Wire">Wire</option>
+                                </select>
+                                <button class="btn btn-info" type="submit"><i class="fas fa-search text-light"> Khoj Been</i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="container-fluid marketing mb-5">
+
+        <div class="row">
+            <div class="col-12 pt-3">
+                <form name="inventory" action="" method="">
+                    <div class="row">
+
+                        {% for item in object %}
+                         <div class="col-2 mb-3">
+                            <div class="card" style="width: 15rem;">
+                                <div class="bg-primary card-header">
+                                    Featured
+                                </div>
+                                <ul class="list-group list-group-flush text-danger">
+                                    <li class="list-group-item">Category: {{ item.category }}</li>
+                                    <li class="list-group-item">Brand: {{ item.brand }}</li>
+                                    <li class="list-group-item">Item: {{ item.item }}</li>
+                                    <li class="list-group-item">Type: {{ item.typep }}</li>
+                                    <li class="list-group-item">Spec: {{ item.specificationp }}</li>
+                                    <li class="list-group-item">Model: {{ item.Model_No }}</li>
+                                    <li class="list-group-item">Price : ₹{{ item.selling_price }}</li>
+                                </ul>
+                            </div>
+                         </div>
+                        {% endfor %}
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

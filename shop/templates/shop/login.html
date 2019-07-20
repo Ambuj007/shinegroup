@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+
+    <div class="container-fluid marketing mb-5">
+        <div class="row">
+            <div class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 pt-3">
+                <div class="card card-signin my-5 bg-dark">
+                    <div class="card-body">
+                      <h4 class="card-title text-center text-light">Sign In</h4>
+                      <form class="form-signin" name="login" action="" method="POST">
+                        {% csrf_token %}
+                            {{ form|crispy }}
+                        <br><br>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        
+                      </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+{% endblock %}

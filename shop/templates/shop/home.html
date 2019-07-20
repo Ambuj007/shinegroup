@@ -1,0 +1,70 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block main_content %}
+    <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 h-75 my-2 mx-5 py-3 bg-transparent text-light ">
+       <ul>
+           <marquee behavior="scroll" direction="down" scrollamount="5">
+             {% for i in object %}
+           <li><i class="fas fa-asterisk">{{ i.Notice }}</i></li>
+           {% endfor %}
+           </marquee>
+       </ul>
+   </div>
+
+    <div id="carouselExampleCaptions" class="carousel col-lg-8 col-md-8 col-sm-12 col-xs-12 my-2 ml-5-" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
+    </ol>
+    <div class="carousel-inner">
+
+      <div class="carousel-item active" style="opacity:10;">
+        <a href="{% url 'shop:enquiry' %}">
+            <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="{% static 'shop/images/Computer.png' %}" data-holder-rendered="true">
+        <div class="carousel-caption d-block" style="opacity:4;">
+            <h5 class="text-white bg-dark">We deals in </h5>
+            <h1 class="text-danger">COMPUTERs</h1>
+        </div></a>
+      </div>
+      <div class="carousel-item" style="opacity:10;">
+        <a href="{% url 'shop:enquiry' %}">
+          <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="{% static 'shop/images/cctv1.png' %}" data-holder-rendered="true">
+        <div class="carousel-caption d-block" style="opacity:4;">
+            <h5 class="text-white bg-dark">We deals in </h5>
+            <h1 class="text-danger">CCTVs</h1>
+        </div></a>
+      </div>
+       <div class="carousel-item" style="opacity:10;">
+        <a href="{% url 'shop:enquiry' %}">
+           <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="{% static 'shop/images/printers.png' %}" data-holder-rendered="true">
+        <div class="carousel-caption d-block" style="opacity:4;">
+            <h5 class="text-white bg-dark">We deals in </h5>
+            <h1 class="text-danger">PRINTERs</h1>
+        </div></a>
+           </div>
+        <div class="carousel-item" style="opacity:10;">
+        <a href="{% url 'shop:enquiry' %}">
+            <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="{% static 'shop/images/phone_ass.png' %}" data-holder-rendered="true">
+        <div class="carousel-caption d-block" style="opacity:4;">
+            <h5 class="text-white bg-dark">We deals in </h5>
+            <h1 class="text-danger">Mobile Phone Accessories</h1>
+        </div></a>
+      </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  </div>
+  </div>
+
+
+   {% endblock %}

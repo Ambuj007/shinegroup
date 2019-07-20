@@ -1,0 +1,68 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% block main_content %}
+
+    <div class="container-fluid marketing mb-5">
+
+        <div class="row">
+            <div class="offset-lg-1 offset-md-1 offset-sm-1 offset-xs-1 col-10 pt-3">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dtVerticalScrollExample_filter" class="dataTables_filter">
+                            <form class="form-inline ml-2 text-light font-weight-bold" action="{% url 'shop:search' %}">
+
+                                <input type="search" class="form-control form-control-sm" placeholder="Search for items" name="search_item"/>
+                                <button class="btn btn-info btn-sm" type="submit"><i class="fas fa-search text-dark"> Search</i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offset-lg-1 offset-md-1 offset-sm-1 offset-xs-1 col-10 pt-3">
+                <form name="inventory" action="" method="">
+                    <table class="table table-hover table-responsive">
+                        <thead class="bg-dark text-light">
+                        <tr>
+                            <th scope="col">SL No.</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Specification</th>
+                            <th scope="col">Model No.</th>
+                            <th scope="col">Purchase Price</th>
+                            <th scope="col">Selling Price</th>
+                            <th scope="col">Edit/Delete</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in object %}
+
+                            <tr class="bg-info text-light">
+                                <th scope="row">{{ forloop.counter}}</th>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.category }}</td>
+                                <td>{{ item.brand }}</td>
+                                <td>{{ item.item }}</td>
+                                <td>{{ item.typep }}</td>
+                                <td>{{ item.specificationp }}</td>
+                                <td>{{ item.Model_No }}</td>
+                                <td>{{ item.purchase_price }}</td>
+                                <td>{{ item.selling_price }}</td>
+                                <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'shop:delete' item.id %}"><i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

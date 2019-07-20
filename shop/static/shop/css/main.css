@@ -1,0 +1,60 @@
+.bg-image{
+background: url(../images/mbbjpg.jpg)  !important;
+}
+.logo{
+font-size:30px !important;
+}
+
+.foooter-text{
+    padding: -5px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width:100%;
+    padding-bottom: 1px;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+}
+table-wrapper-scroll-y {
+    display: block;
+}
+
+
+social-media-icons ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.social-media-icons a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px;
+}
+
+
+.list-enquiry{
+    height : 20px;
+    text-align: center;
+    font-size: 10px;
+    padding-top: 2px;
+}
+
+.demand1{
+    padding-left:10% !important;; 
+    padding-right:10% !important;;
+    padding-top:5% !important;;
+
+}
+
+.demandtable{
+    padding-top:2% !important;;
+
+}

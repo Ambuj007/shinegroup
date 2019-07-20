@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/bootstrap-4.2.1-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/bootstrap-4.2.1-dist/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static 'shop/javascript/js.js' %}"></script>
+    <script src="{% static 'shop/javascript/popper.min.js' %}"></script>
+    <script src="{% static 'shop/javascript/bootstrap.min.js' %}"></script>
+
+</head>
+<body class="">
+
+        <div class="container-fluid img-responsive bg-image">
+    
+    {% if request.path == '/accounts/login' %}
+        {% include "shop/header.html" %}
+    {% else %}
+       {% include "shop/header.html" %}
+        {% include "shop/navbar.html" %}
+    {% endif %}
+        {% block main_content %}
+        {% endblock %}
+       
+    {% include "shop/footer.html" %}
+    <br>
+</div>
+  </body>
+</html>
