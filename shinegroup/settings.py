@@ -130,7 +130,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-# Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
+
+if 'HEROKU' in os.environ:
+    # Configure Django App for Heroku.
+    import django_heroku
+    django_heroku.settings(locals())
