@@ -9,7 +9,7 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-danger btn-lg" type="submit"><i class="fas fa-trash-alt"></i> Confirm if you want to delete the record</button>
-                   <a class=" btn btn-warning btn-lg text-light nounderline" href="{% url 'shop:ItemList' %}"> <i class="fas fa-frown"></i> No I don't Want.</a>
+                   <a class="btn btn-warning btn-lg text-light nounderline" href="{% url 'shop:ItemList' %}"> <i class="fas fa-frown"></i> No I don't Want.</a>
                 </form>
             </div>
         </div>

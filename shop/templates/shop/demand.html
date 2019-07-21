@@ -19,7 +19,7 @@
                                     <thead class="bg-dark text-light">
                                     <tr>
                                         <th scope="col">SL No.</th>
-                                        <th scope="col">Item</th>
+                                        <th scope="col" colspan="5">Item</th>
                                         <th scope="col">Quantity</th>
                                     </tr>
                                     </thead>
@@ -28,7 +28,7 @@
                 
                                             <tr class="bg-info text-light">
                                             <td>{{ forloop.counter}}</td>
-                                            <td>{{ item.Item }}</td>
+                                            <td colspan="5" style="word-break: break-all;">{{ item.Item }}</td>
                                             <td>{{ item.Quantity }}</td>
                                             </tr>
                 
@@ -37,12 +37,8 @@
                                     </tbody>
                                 </table>
                         </div>
-                        <div class="pl-5">
-                            <button name="D" class="btn btn-xs btn-success mt-1 ml-5 px-5" type="submit">
-                                <a class="text-light" href="{% url 'shop:demand_download' %}">
-                                    Export Demand
-                                </a>
-                            </button>
+                        <div>
+                            <a class="btn btn-success btn-xs mt-1 text-light nounderline" style="margin-left: 34%;" href="{% url 'shop:demand_download' %}"> <i class="fas fa-download"></i> Export Demand</a>
                         </div>    
                  </div>
 </div>
