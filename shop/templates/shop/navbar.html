@@ -25,10 +25,10 @@
           </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:inventorymanagement' %}">Stock</a>
+            <a class="nav-link text-primary" href="{% url 'shop:inventory_management' %}">Stock</a>
           </li>
             <li class="nav-item">
-                <a class="nav-link text-primary" href="{% url 'shop:ItemList' %}">Detail</a>
+                <a class="nav-link text-primary" href="{% url 'shop:item_list' %}">Detail</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-primary" href="{% url 'shop:notice' %}">Notice</a>

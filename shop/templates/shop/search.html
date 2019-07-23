@@ -48,9 +48,9 @@
                                 <td>{{ item.category }}</td>
                                 <td>{{ item.brand }}</td>
                                 <td>{{ item.item }}</td>
-                                <td>{{ item.typep }}</td>
-                                <td>{{ item.specificationp }}</td>
-                                <td>{{ item.Model_No }}</td>
+                                <td>{{ item.item_type }}</td>
+                                <td>{{ item.item_specification }}</td>
+                                <td>{{ item.model_no }}</td>
                                 <td>{{ item.purchase_price }}</td>
                                 <td>{{ item.selling_price }}</td>
                                 <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'shop:delete' item.id %}"><i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>

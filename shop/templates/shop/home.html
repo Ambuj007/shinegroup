@@ -5,8 +5,8 @@
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 h-75 my-2 mx-5 py-3 bg-transparent text-light ">
        <ul>
            <marquee behavior="scroll" direction="down" scrollamount="5">
-             {% for i in object %}
-           <li><i class="fas fa-asterisk">{{ i.Notice }}</i></li>
+             {% for item in object %}
+           <li><i class="fas fa-asterisk">{{ item.notice }}</i></li>
            {% endfor %}
            </marquee>
        </ul>

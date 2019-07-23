@@ -4,48 +4,50 @@
 {% block main_content %}
 
 <div class="container-fluid marketing mb-5">
-        <div class="row">
-         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 demand1">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 demand1">
             <form name="Demand" action="" method="POST">
-            {% csrf_token %}
+                {% csrf_token %}
                 {{ form|crispy }}
-            <br><input type="submit" class="btn btn-primary" Value="submit Form"/>
+                <br><input type="submit" class="btn btn-primary" Value="submit Form" />
             </form>
-         </div>
+        </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 demandtable">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                <table class="table table-sm table-hover table-responsive">
-                                    <thead class="bg-dark text-light">
-                                    <tr>
-                                        <th scope="col">SL No.</th>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for item in object %}
-                
-                                            <tr class="bg-info text-light">
-                                            <td>{{ forloop.counter}}</td>
-                                            <td>{{ item.Item }}</td>
-                                            <td>{{ item.Quantity }}</td>
-                                            </tr>
-                
-                                    {% endfor %}
-                                   
-                                    </tbody>
-                                </table>
-                        </div>
-                        <div class="pl-5">
-                            <button name="D" class="btn btn-xs btn-success mt-1 ml-5 px-5" type="submit">
-                                <a class="text-light" href="{% url 'shop:demand_download' %}">
-                                    Export Demand
-                                </a>
-                            </button>
-                        </div>    
-                 </div>
-</div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 demandtable">
+            <div class="pl-5" style="margin-left: 22%;">
+                <a class="btn btn-success btn-xs text-light nounderline text-light"
+                    href="{% url 'shop:demand_download' %}">
+                    Export Demand
+                </a>
+            </div>
+            <div class="demandtable table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-sm table-hover table-responsive">
+                    <thead class="bg-dark text-light">
+                        <tr class="text-center">
+                            <th scope="col">SL No.</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in object %}
+
+                        <tr class="bg-info text-light">
+                            <td>{{ forloop.counter}}</td>
+                            <td>{{ item.item }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.date_created }}</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 {% endblock %}
