@@ -3,12 +3,12 @@ from shop.models import Notice
 
 class AnimalTestCase(TestCase):
     def setUp(self):
-        Notice.objects.create(Notice="lion")
+        Notice.objects.create(notice="lion")
 
     def test_animals_can_speak(self):
         """Animals that can speak are correctly identified"""
         
-        lion = Notice.objects.get(Notice="lion")
+        lion = Notice.objects.get(notice="lion")
         self.assertIsNotNone(lion)
         # cat = Animal.objects.get(name="cat")
         # self.assertEqual(lion.speak(), 'The lion says "roar"')

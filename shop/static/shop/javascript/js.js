@@ -7,7 +7,7 @@ $( document ).ready(function() {
             var idd = x[i].id;
 
             if ($("#" + idd).parent().attr("name") == "inventory") {
-                if (idd != "div_id_Item" && idd != "div_id_brand" && idd != "div_id_typep" && idd != "div_id_specificationp" && idd != "div_id_purchase_price" && idd != "div_id_selling_price" && idd != "div_id_model") {
+                if (idd != "div_id_item_class" && idd != "div_id_brand" && idd != "div_id_item_type" && idd != "div_id_item_specification" && idd != "div_id_purchase_price" && idd != "div_id_selling_price" && idd != "div_id_model_no") {
                     $("#" + idd).addClass("d-none");
                     //console.log(x[i].id);
                 }
@@ -17,29 +17,30 @@ $( document ).ready(function() {
     }
     toHide();
 
-    $("#id_Item").change(function () {
+    $("#id_item_class").change(function () {
+       // $("form")[0].reset();
         if ($(this).val() == "CCTV") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_CCTV").removeClass("d-none");
-            $("#id_CCTV").change(function () {
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_cctv").removeClass("d-none");
+            $("#id_cctv").change(function () {
                 if ($(this).val() == "DVR" || $(this).val() == "SMPS") {
-                    $("#div_id_specificationp").addClass("d-none");
-                    $("#div_id_CAMERA").addClass("d-none");
-                    $("#div_id_CAMERA_SPEC").addClass("d-none");
-                    $("#div_id_DVR_SMPS").removeClass("d-none");
+                    $("#div_id_item_specification").addClass("d-none");
+                    $("#div_id_camera").addClass("d-none");
+                    $("#div_id_camera_spec").addClass("d-none");
+                    $("#div_id_dvr_smps").removeClass("d-none");
                 }
 
                 else if ($(this).val() == "Camera") {
-                    $("#div_id_specificationp").addClass("d-none");
-                    $("#div_id_DVR_SMPS").addClass("d-none");
-                    $("#div_id_CAMERA").removeClass("d-none");
-                    $("#div_id_CAMERA_SPEC").removeClass("d-none");
+                    $("#div_id_item_specification").addClass("d-none");
+                    $("#div_id_dvr_smps").addClass("d-none");
+                    $("#div_id_camera").removeClass("d-none");
+                    $("#div_id_camera_spec").removeClass("d-none");
                 }
                 else{
                     toHide();
-                    $("#div_id_typep").addClass("d-none");
-                    $("#div_id_CCTV").removeClass("d-none");
+                    $("#div_id_item_type").addClass("d-none");
+                    $("#div_id_cctv").removeClass("d-none");
                     console.log($(this).val());
                 }
             });
@@ -47,67 +48,67 @@ $( document ).ready(function() {
 
         else if ($(this).val() == "Computer Peripherals") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_COMP_PERIPHERALS").removeClass("d-none");
-            $("#id_COMP_PERIPHERALS").change(function () {
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_comp_peripherals").removeClass("d-none");
+            $("#id_comp_peripherals").change(function () {
                 if ($(this).val() == "Keyboard" || $(this).val() == "Mouse") {
-                    $("#div_id_specificationp").addClass("d-none");
-                    $("#div_id_SMALL_STORAGE").addClass("d-none");
-                    $("#div_id_KB_MOUSE").removeClass("d-none");
+                    $("#div_id_item_specification").addClass("d-none");
+                    $("#div_id_small_storage").addClass("d-none");
+                    $("#div_id_kb_mouse").removeClass("d-none");
                 }
 
                 else if ($(this).val() == "RAM" || $(this).val() == "GC") {
-                    $("#div_id_specificationp").addClass("d-none");
-                    $("#div_id_KB_MOUSE").addClass("d-none");
-                    $("#div_id_SMALL_STORAGE").removeClass("d-none");
+                    $("#div_id_item_specification").addClass("d-none");
+                    $("#div_id_kb_mouse").addClass("d-none");
+                    $("#div_id_small_storage").removeClass("d-none");
                 }
                 else{
                     toHide();
-                    $("#div_id_typep").addClass("d-none");
-                    $("#div_id_COMP_PERIPHERALS").removeClass("d-none");
-                    console.log($(this).val());
+                    $("#div_id_item_type").addClass("d-none");
+                    $("#div_id_comp_peripherals").removeClass("d-none");
+                    
                 }
             });
         }
 
         else if ($(this).val() == "Storage") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_specificationp").addClass("d-none");
-            $("#div_id_STORAGE").removeClass("d-none");
-            $("#div_id_STORAGE_SPEC").removeClass("d-none");
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_item_specification").addClass("d-none");
+            $("#div_id_storage").removeClass("d-none");
+            $("#div_id_storage_spec").removeClass("d-none");
 
         }
 
         else if ($(this).val() == "Speakers") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_specificationp").addClass("d-none");
-            $("#div_id_SPEAKER").removeClass("d-none");
-            $("#div_id_SPEAKER_TYPE").removeClass("d-none");
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_item_specification").addClass("d-none");
+            $("#div_id_speaker").removeClass("d-none");
+            $("#div_id_speaker_type").removeClass("d-none");
 
         }
 
         else if ($(this).val() == "Antivirus") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_specificationp").addClass("d-none");
-            $("#div_id_ANTIVIRUS").removeClass("d-none");
-            $("#div_id_USER").removeClass("d-none");
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_item_specification").addClass("d-none");
+            $("#div_id_antivirus").removeClass("d-none");
+            $("#div_id_user").removeClass("d-none");
 
         }
 
         else if ($(this).val() == "Printer") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_PRINTER").removeClass("d-none");
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_printer").removeClass("d-none");
 
         }
 
         else if ($(this).val() == "Ups") {
             toHide();
-            $("#div_id_typep").addClass("d-none");
-            $("#div_id_UPS").removeClass("d-none");
+            $("#div_id_item_type").addClass("d-none");
+            $("#div_id_ups").removeClass("d-none");
 
         }
 

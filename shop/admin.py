@@ -3,11 +3,11 @@ from .models import Stock
 # Register your models here.
 
 class StockAdmin(admin.ModelAdmin):
-    list_display = ('id','category','brand','item','typep','specificationp','Model_No','purchase_price','selling_price')
+    list_display = ('id','category','brand','item','item_type','item_specification','model_no','purchase_price','selling_price')
     list_editable = ('selling_price',)
     list_per_page = 10
-    search_fields = ('category','brand','typep','specificationp','Model_No')
-    list_filter = ('category','typep','specificationp')
+    search_fields = ('category','brand','item_type','item_specification','model_no')
+    list_filter = ('category','item_type','item_specification')
 
 admin.site.register(Stock, StockAdmin)
 
