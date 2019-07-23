@@ -32,14 +32,12 @@
                     </thead>
                     <tbody>
                         {% for item in object %}
-
                         <tr class="bg-info text-light">
                             <td>{{ forloop.counter}}</td>
                             <td>{{ item.item }}</td>
                             <td>{{ item.quantity }}</td>
                             <td>{{ item.date_created }}</td>
                         </tr>
-
                         {% endfor %}
 
                     </tbody>
