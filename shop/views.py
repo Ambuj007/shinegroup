@@ -61,7 +61,6 @@ def demand_view(request):
             messages.success(request, 'Note kar liya hai, bagal me check kar lo')
             form = DemandForm()
     demands_all = Demand.objects.all()
-    print(demands_all[2])
     return render(request, 'shop/demand.html', {'form':form, 'object':demands_all})
 
 
@@ -141,7 +140,6 @@ def enquiry(request):
             'search_item' : search_item,
             'object' : result
         }
-        print(context)
     return render(request, 'shop/enquiry.html',context)
 
 
@@ -160,7 +158,6 @@ def search(request):
             'search_item' : search_item,
             'object' : result
         }
-        #print(context)
         return render(request, 'shop/search.html',context)
     else:
         return redirect('detail')
@@ -214,7 +211,6 @@ def contact(request):
         }
 
         contact_message = get_template('shop/email.txt').render(context)
-        #print(contact_message)
         send_mail(
             subject,
             contact_message,
@@ -298,7 +294,6 @@ def inventory_management(request):
 
         }
 
-        #print(form.cleaned_data['Item'])
         Stock.objects.create(**new_model)
         form = StockForm()
 
