@@ -45,35 +45,6 @@
 
         </div>
     </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 demandtable">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                <table class="table table-sm table-hover table-responsive">
-                                    <thead class="bg-dark text-light">
-                                    <tr>
-                                        <th scope="col">SL No.</th>
-                                        <th scope="col" colspan="5">Item</th>
-                                        <th scope="col">Quantity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for item in object %}
-                
-                                            <tr class="bg-info text-light">
-                                            <td>{{ forloop.counter}}</td>
-                                            <td colspan="5" style="word-break: break-all;">{{ item.Item }}</td>
-                                            <td>{{ item.Quantity }}</td>
-                                            </tr>
-                
-                                    {% endfor %}
-                                   
-                                    </tbody>
-                                </table>
-                        </div>
-                        <div>
-                            <a class="btn btn-success btn-xs mt-1 text-light nounderline" style="margin-left: 34%;" href="{% url 'shop:demand_download' %}"> <i class="fas fa-download"></i> Export Demand</a>
-                        </div>    
-                 </div>
-</div>
 </div>
 
 {% endblock %}
