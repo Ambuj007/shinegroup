@@ -27,7 +27,7 @@ import xlwt
 #DELETE View
 class DeleteItem(DeleteView):
     model = Stock
-    template_name = 'shop/delete_Item.html'
+    template_name = 'shop/delete_item.html'
     success_url = '../inventory_detail'
 
 
