@@ -134,7 +134,7 @@ def enquiry(request):
             Q(category__icontains=search_item) |
             Q(brand__icontains=search_item) |
             Q(item__icontains=search_item) |
-            Q(Model_No__icontains=search_item)
+            Q(model_no__icontains=search_item)
         )
         context = {
             'search_item' : search_item,
@@ -152,7 +152,7 @@ def search(request):
             Q(category__icontains=search_item) |
             Q(brand__icontains=search_item) |
             Q(item__icontains=search_item) |
-            Q(Model_No__icontains=search_item)
+            Q(model_no__icontains=search_item)
         )
         context = {
             'search_item' : search_item,
