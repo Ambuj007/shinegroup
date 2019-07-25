@@ -59,7 +59,7 @@ class StockForm(forms.Form):
         purchase_price = self.cleaned_data.get("purchase_price")
         if selling_price <= purchase_price:
             raise forms.ValidationError("Ismein Tera Ghata")
-        return super(ProductView, self).clean(*args, **kwargs)
+        return super(StockForm, self).clean(*args, **kwargs)
 
 
 class LoginForm(forms.Form):

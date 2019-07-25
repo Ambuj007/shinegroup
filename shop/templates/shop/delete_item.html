@@ -8,11 +8,6 @@
             <div class="align-center offset-lg-3 offset-md-3 offset-sm-3 offset-xs-3 col-6 pt-5">
                 <button class="btn btn-danger btn-lg" type="submit"><i class="fas fa-trash-alt"></i> Confirm if you want to delete the record</button>
                    <a class=" btn btn-warning btn-lg text-light nounderline" href="{% url 'shop:item_list' %}"> <i class="fas fa-frown"></i> No I don't, take me back please.</a>
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <button class="btn btn-danger btn-lg" type="submit"><i class="fas fa-trash-alt"></i> Confirm if you want to delete the record</button>
-                   <a class="btn btn-warning btn-lg text-light nounderline" href="{% url 'shop:ItemList' %}"> <i class="fas fa-frown"></i> No I don't Want.</a>
-                </form>
             </div>
         </div>
     </div>
