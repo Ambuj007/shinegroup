@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Stock, Notice, Demand
 from django.template.loader import get_template
-from django.views.generic.edit import DeleteView, UpdateView
+from django.views.generic.edit import DeleteView, UpdateView, FormView
 from django.views.generic import CreateView, FormView, ListView
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect
@@ -25,9 +25,14 @@ import xlwt
 
 # Create your views here.
 #DELETE View
+def DeleteItemView(request, pk=None):
+    item = Stock.objects.get(id=pk)
+    item.delete()
+    return redirect('../inventory_detail')
+
 class DeleteItem(DeleteView):
     model = Stock
-    template_name = 'shop/delete_item.html'
+    template_name = 'shop/item_detail.html'
     success_url = '../inventory_detail'
 
 
@@ -105,8 +110,20 @@ def demand_download_view(request):
 class ItemUpdateView(UpdateView):
     template_name='shop/item_update.html'
     model = Stock
-    fields = ['category','brand','item','item_type','item_specification','model_no','purchase_price','selling_price']
-    success_url = '../inventory_detail'
+    fields = ['category','brand','item','item_type','model_no','purchase_price','selling_price']
+    #success_url = '../inventory_detail'
+    def form_valid(self,form):
+        purchase = form.cleaned_data.get('purchase_price')
+        selling = form.cleaned_data.get('selling_price')
+        if selling == purchase:
+            form.add_error(None, f'Isme koi fayda nahi hai')
+            return self.form_invalid(form)
+        elif selling<purchase:
+            form.add_error(None, f'Isme Tera {purchase-selling} Rupaye ka Ghata')
+            return self.form_invalid(form)
+        else:
+            instance = form.save()
+        return redirect('../inventory_detail')
 
 
 def index(request):
@@ -120,11 +137,14 @@ def index(request):
 def services(request):
     return render(request, 'shop/services.html')
 
+
 def thank_you(request):
     return render(request, 'shop/thank_you.html')
 
+
 def about(request):
     return render(request, 'shop/about.html')
+
 
 def enquiry(request):
     context= {}
@@ -145,6 +165,7 @@ def enquiry(request):
 
     #return render(request, 'shop/enquiry.html')
 
+
 def search(request):
     if request.GET:
         search_item = request.GET['search_item']
@@ -161,6 +182,7 @@ def search(request):
         return render(request, 'shop/search.html',context)
     else:
         return redirect('detail')
+
 
 class LoginView(FormView):
     form_class = LoginForm
@@ -223,79 +245,83 @@ def contact(request):
     return render(request, 'shop/contact.html',  {'form':form})
 
 
-def inventory_management(request):
-    new_model = {}
-    form = StockForm(request.POST or None)
-    if form.is_valid():
-        category_m = form.cleaned_data['item_class']
-        brand_m = form.cleaned_data['brand']
-        model_no_m = form.cleaned_data['model_no']
-        purchase_price_m = form.cleaned_data['purchase_price']
-        selling_price_m = form.cleaned_data['selling_price']
-        item_m =""
-        type_m= ""
-        specification_m =  ""
+class StockCreateView(FormView):
+    template_name = 'shop/inventory_management.html'
+    form_class = StockForm
+    success_url = "../inventory_management"
+    
+    def form_valid(self,form):
+        new_model = {}
+        if form.is_valid():
+            category_m = form.cleaned_data['item_class']
+            brand_m = form.cleaned_data['brand']
+            model_no_m = form.cleaned_data['model_no']
+            purchase_price_m = form.cleaned_data['purchase_price']
+            selling_price_m = form.cleaned_data['selling_price']
+            item_m =""
+            type_m= ""
+            specification_m =  ""
 
-        if form.cleaned_data['item_class'] == "CCTV":
-            item_m = form.cleaned_data['cctv']
-            if form.cleaned_data['cctv'] == "Camera":
-                type_m = form.cleaned_data['camera']
-                specification_m = form.cleaned_data['camera_spec']
-            elif form.cleaned_data['cctv'] == "DVR" or form.cleaned_data['cctv'] == "SMPS":
-                type_m = form.cleaned_data['dvr_smps']
-
-
-        elif form.cleaned_data['item_class'] == "Computer Peripherals":
-            item_m = form.cleaned_data['comp_peripherals']
-            if form.cleaned_data['comp_peripherals'] == "Keyboarad" or form.cleaned_data['comp_peripherals'] == "Mouse":
-                specification_m = form.cleaned_data['KB_MOUSE']
-            elif form.cleaned_data['comp_peripherals'] == "RAM" or form.cleaned_data['comp_peripherals'] == "GC":
-                specification_m = form.cleaned_data['small_storage']
+            if form.cleaned_data['item_class'] == "CCTV":
+                item_m = form.cleaned_data['cctv']
+                if form.cleaned_data['cctv'] == "Camera":
+                    type_m = form.cleaned_data['camera']
+                    specification_m = form.cleaned_data['camera_spec']
+                elif form.cleaned_data['cctv'] == "DVR" or form.cleaned_data['cctv'] == "SMPS":
+                    type_m = form.cleaned_data['dvr_smps']
 
 
-        elif form.cleaned_data['item_class'] == "Storage":
-            type_m = form.cleaned_data['storage']
-            specification_m = form.cleaned_data['storage_spec']
+            elif form.cleaned_data['item_class'] == "Computer Peripherals":
+                item_m = form.cleaned_data['comp_peripherals']
+                if form.cleaned_data['comp_peripherals'] == "Keyboarad" or form.cleaned_data['comp_peripherals'] == "Mouse":
+                    specification_m = form.cleaned_data['KB_MOUSE']
+                elif form.cleaned_data['comp_peripherals'] == "RAM" or form.cleaned_data['comp_peripherals'] == "GC":
+                    specification_m = form.cleaned_data['small_storage']
 
 
-        elif form.cleaned_data['item_class'] == "Printer":
-            type_m = form.cleaned_data['printer']
+            elif form.cleaned_data['item_class'] == "Storage":
+                type_m = form.cleaned_data['storage']
+                specification_m = form.cleaned_data['storage_spec']
 
 
-        elif form.cleaned_data['item_class'] == "Ups":
-            type_m = form.cleaned_data['ups']
-            
-
-        elif form.cleaned_data['item_class'] == "Speakers":
-            type_m = form.cleaned_data['speaker']
-            specification_m = form.cleaned_data['speaker_type']
+            elif form.cleaned_data['item_class'] == "Printer":
+                type_m = form.cleaned_data['printer']
 
 
-        elif form.cleaned_data['item_class'] == "Antivirus":
-            type_m = form.cleaned_data['antivirus']
-            specification_m = form.cleaned_data['user']
+            elif form.cleaned_data['item_class'] == "Ups":
+                type_m = form.cleaned_data['ups']
+                
+
+            elif form.cleaned_data['item_class'] == "Speakers":
+                type_m = form.cleaned_data['speaker']
+                specification_m = form.cleaned_data['speaker_type']
 
 
-        else:
-            type_m = form.cleaned_data['item_type']
-            specification_m = form.cleaned_data['item_specification']
+            elif form.cleaned_data['item_class'] == "Antivirus":
+                type_m = form.cleaned_data['antivirus']
+                specification_m = form.cleaned_data['user']
+
+
+            else:
+                type_m = form.cleaned_data['item_type']
+                specification_m = form.cleaned_data['item_specification']
 
 
 
-        new_model = {
-                'category' : category_m,
-                'brand' : brand_m,
-                'item' : item_m,
-                'item_type' : type_m,
-                'item_specification' : specification_m,
-                'model_no' : model_no_m,
-                'purchase_price' : purchase_price_m,
-                'selling_price' :selling_price_m
+            new_model = {
+                    'category' : category_m,
+                    'brand' : brand_m,
+                    'item' : item_m,
+                    'item_type' : type_m,
+                    'item_specification' : specification_m,
+                    'model_no' : model_no_m,
+                    'purchase_price' : purchase_price_m,
+                    'selling_price' :selling_price_m
 
-        }
+            }
 
-        Stock.objects.create(**new_model)
-        form = StockForm()
+            Stock.objects.create(**new_model)
+            form = {}
 
-    return render(request, 'shop/inventory_management.html', {'form':form})
+        return super().form_valid(form)
 

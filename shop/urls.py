@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import ItemListView, DeleteItem, ItemUpdateView, LoginView, NoticeView
+from .views import *
 
 app_name = "shop"
 urlpatterns = [
@@ -14,10 +14,11 @@ urlpatterns = [
     url(r'^download_demand$', views.demand_download_view, name = "demand_download"),
     url(r'^thank_you', views.thank_you, name = "thank_you"),
     url(r'^accounts/logout', views.logout_view, name = "logout"),
-    url(r'^inventory_management', views.inventory_management, name = "inventory_management"),
+    url(r'^inventory_management', StockCreateView.as_view(), name = "inventory_management"),
     url(r'^notice', NoticeView.as_view(), name = "notice"),
     url(r'^inventory_detail', ItemListView.as_view(), name = "item_list"),
     url(r'^accounts/login', LoginView.as_view(), name = "login"),
-    url(r'^delete/(?P<pk>.*)', DeleteItem.as_view(), name = "delete"),
+    #url(r'^delete/(?P<pk>.*)', DeleteItem.as_view(), name = "delete"),
+    url(r'^deletee/(?P<pk>.*)', DeleteItemView, name = "delete"),
     url(r'^update/(?P<pk>.*)', ItemUpdateView.as_view(), name = "update"),
 ]

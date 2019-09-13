@@ -3,13 +3,26 @@
 {% load crispy_forms_tags %}
 {% block main_content %}
 
-    <div class="container-fluid marketing mb-5">
+<div class="container-fluid marketing mb-5">
+    <form action="" method="POST">
+        {% csrf_token %}
         <div class="row">
-            <div class="align-center offset-lg-3 offset-md-3 offset-sm-3 offset-xs-3 col-6 pt-5">
-                <button class="btn btn-danger btn-lg" type="submit"><i class="fas fa-trash-alt"></i> Confirm if you want to delete the record</button>
-                   <a class=" btn btn-warning btn-lg text-light nounderline" href="{% url 'shop:item_list' %}"> <i class="fas fa-frown"></i> No I don't, take me back please.</a>
+
+           
+            <div class="align-center offset-3 col-12 pt-5">
+                <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt"></i> Confirm if you want
+                    to delete the record</button>
             </div>
+        
+
+        
+            <div class="align-center offset-3 col-12 pt-5"><a
+                    class=" btn btn-warning btn-sm text-light nounderline" href="{% url 'shop:item_list' %}"> <i
+                        class="fas fa-frown"></i> No I don't, take me back please.</a>
+            </div>
+
         </div>
-    </div>
+    </form>
+</div>
 
 {% endblock %}
