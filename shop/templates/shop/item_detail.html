@@ -54,9 +54,11 @@
                                     <td>{{ item.model_no }}</td>
                                     <td>{{ item.purchase_price }}</td>
                                     <td>{{ item.selling_price }}</td>
-                                    <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'shop:delete' item.id %}"><i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>
-                                    </tr>
-
+                                    <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="{% url 'shop:delete' item.id %}">
+                                            <i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>
+        </tr>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -66,4 +68,8 @@
         </div>
     </div>
 
+
+    
+      
+      
 {% endblock %}

@@ -11,6 +11,7 @@ class ContactForm(forms.Form):
     message = forms.CharField(required=False, max_length=200, widget=forms.Textarea(
         attrs={'rows': 4, 'cols': 40}))
 
+    
 
 class StockForm(forms.Form):
     item_class = forms.CharField(label='It Is', required=False, widget=forms.Select(
@@ -30,7 +31,7 @@ class StockForm(forms.Form):
         label='Type', required=False, widget=forms.Select(choices=DVR_SMPS))
     comp_peripherals = forms.CharField(label='Type', required=False, widget=forms.Select(
         choices=sorted(COMP_PERIPHERALS, reverse=False)))
-    kb_mouse = forms.CharField(label='Specification', required=False, widget=forms.Select(
+    kb_mouse = forms.CharField(label='Specification', initial='N/A', required=False, widget=forms.Select(
         choices=sorted(KB_MOUSE, reverse=False)))
     ups = forms.CharField(label='Type', required=False, widget=forms.Select(
         choices=sorted(UPS, reverse=False)))
@@ -39,25 +40,27 @@ class StockForm(forms.Form):
     printer = forms.CharField(label='Type', required=False, widget=forms.Select(
         choices=sorted(PRINTER, reverse=False)))
     item_specification = forms.CharField(
-        max_length=120, label='Specification',  required=False)
-    user = forms.CharField(label='Specification',
+        max_length=120, label='Specification', initial='N/A',  required=False)
+    user = forms.CharField(label='Specification', initial='N/A',
                            required=False, widget=forms.Select(choices=USER))
-    camera_spec = forms.CharField(label='Specification', required=False, widget=forms.Select(
+    camera_spec = forms.CharField(label='Specification', initial='N/A', required=False, widget=forms.Select(
         choices=sorted(CAMERA_SPEC, reverse=False)))
     storage_spec = forms.CharField(
-        label='Specification', required=False, widget=forms.Select(choices=STORAGE_SPEC))
+        label='Specification', initial='N/A', required=False, widget=forms.Select(choices=STORAGE_SPEC))
     small_storage = forms.CharField(
-        label='Specification', required=False, widget=forms.Select(choices=SMALL_STORAGE))
-    speaker_type = forms.CharField(label='Specification', required=False, widget=forms.Select(
+        label='Specification', initial='N/A', required=False, widget=forms.Select(choices=SMALL_STORAGE))
+    speaker_type = forms.CharField(label='Specification', initial='N/A', required=False, widget=forms.Select(
         choices=sorted(SPEAKER_TYPE, reverse=False)))
     model_no = forms.CharField(max_length=120, required=False)
-    purchase_price = forms.DecimalField(max_digits=10, decimal_places=2)
-    selling_price = forms.DecimalField(max_digits=10, decimal_places=2)
+    purchase_price = forms.DecimalField(max_digits=10, decimal_places=2, min_value=1)
+    selling_price = forms.DecimalField(max_digits=10, decimal_places=2, min_value=1)
 
     def clean(self, *args, **kwargs):
         selling_price = self.cleaned_data.get("selling_price")
         purchase_price = self.cleaned_data.get("purchase_price")
-        if selling_price <= purchase_price:
+        if selling_price == purchase_price:
+            raise forms.ValidationError("Isme koi fayada nahi hai")
+        elif selling_price < purchase_price:
             raise forms.ValidationError("Ismein Tera Ghata")
         return super(StockForm, self).clean(*args, **kwargs)
 
