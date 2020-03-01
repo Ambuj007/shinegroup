@@ -2,17 +2,18 @@
 {% load staticfiles %}
 {% block main_content %}
     <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 h-75 my-2 mx-5 py-3 bg-transparent text-light ">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 my-5 mx-5 bg-transparent text-dark ">
        <ul>
-           <marquee behavior="scroll" direction="down" scrollamount="5">
+           <marquee height=300px behavior="scroll" direction="down" scrollamount="5">
              {% for item in object %}
-           <li><i class="fas fa-asterisk">{{ item.notice }}</i></li>
+           <li><i class="fa fa-hand-point-right">&nbsp;{{ item.notice }}</i></li>
+           <hr>
            {% endfor %}
            </marquee>
        </ul>
    </div>
 
-    <div id="carouselExampleCaptions" class="carousel col-lg-8 col-md-8 col-sm-12 col-xs-12 my-2 ml-5-" data-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel col-lg-8 col-md-8 col-sm-12 col-xs-12 my-3 ml-5-" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
@@ -23,7 +24,7 @@
 
       <div class="carousel-item active" style="opacity:10;">
         <a href="{% url 'shop:enquiry' %}">
-            <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/Computer.jpg" data-holder-rendered="true">
+            <img class="d-block w-100" alt="First slide [800x400]" style="height:25em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/Computer.jpg" data-holder-rendered="true">
         <div class="carousel-caption d-block" style="opacity:4;">
             <h5 class="text-white bg-dark">We deals in </h5>
             <h1 class="text-danger">COMPUTERs</h1>
@@ -31,7 +32,7 @@
       </div>
       <div class="carousel-item" style="opacity:10;">
         <a href="{% url 'shop:enquiry' %}">
-          <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/cctv1.png" data-holder-rendered="true">
+          <img class="d-block w-100" alt="First slide [800x400]" style="height:25em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/cctv1.png" data-holder-rendered="true">
         <div class="carousel-caption d-block" style="opacity:4;">
             <h5 class="text-white bg-dark">We deals in </h5>
             <h1 class="text-danger">CCTVs</h1>
@@ -39,7 +40,7 @@
       </div>
        <div class="carousel-item" style="opacity:10;">
         <a href="{% url 'shop:enquiry' %}">
-           <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/printers.jpg" data-holder-rendered="true">
+           <img class="d-block w-100" alt="First slide [800x400]" style="height:25em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643604/webshine/static/images/printers.jpg" data-holder-rendered="true">
         <div class="carousel-caption d-block" style="opacity:4;">
             <h5 class="text-white bg-dark">We deals in </h5>
             <h1 class="text-danger">PRINTERs</h1>
@@ -47,7 +48,7 @@
            </div>
         <div class="carousel-item" style="opacity:10;">
         <a href="{% url 'shop:enquiry' %}">
-            <img class="d-block w-100" alt="First slide [800x400]" style="height:29em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643605/webshine/static/images/phone_ass.png" data-holder-rendered="true">
+            <img class="d-block w-100" alt="First slide [800x400]" style="height:25em;" src="https://res.cloudinary.com/webshine/image/upload/v1563643605/webshine/static/images/phone_ass.png" data-holder-rendered="true">
         <div class="carousel-caption d-block" style="opacity:4;">
             <h5 class="text-white bg-dark">We deals in </h5>
             <h1 class="text-danger">Mobile Phone Accessories</h1>

@@ -1,6 +1,7 @@
 from django import forms
 from .Lists import PRODUCT_CHOICES, SPEAKER, STORAGE_SPEC, SPEAKER_TYPE, STORAGE, CAMERA_SPEC, BRAND, SMALL_STORAGE, KB_MOUSE, UPS, USER, ANTIVIRUS, PRINTER, COMP_PERIPHERALS, DVR_SMPS, CAMERA, CCTV
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 
 class ContactForm(forms.Form):
@@ -73,17 +74,12 @@ class LoginForm(forms.Form):
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
-
-        if username and password:
-            user = authenticate(username=username, password=password)
-            if not user:
-                raise forms.ValidationError("User does not exists.")
-
-            if not user.check_password(password):
-                raise forms.ValidationError("Incorrect Password")
-
-            if not user.is_active:
-                raise forms.ValidationError("User is not active")
+        auth_user = authenticate(username =username, password =password)
+        if not auth_user:
+            raise forms.ValidationError("Username or password or both incorrect.")
+            
+        if not auth_user.is_active:
+            raise forms.ValidationError("User is not active")
         return super(LoginForm, self).clean(*args, **kwargs)
 
 
@@ -94,3 +90,28 @@ class NoticeForm(forms.Form):
 class DemandForm(forms.Form):
     item = forms.CharField(required=True, max_length=100)
     quantity = forms.IntegerField(required=True, min_value=1)
+
+
+class RegistrationForm(forms.Form):
+    user = forms.CharField(label = "User Name", required = True, max_length = 20)
+    first_name = forms.CharField(label ="First Name", required = True, max_length = 100)
+    last_name = forms.CharField(label ="Last Name", required = True, max_length = 100)
+    email = forms.EmailField(label = "Email ID")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
+    confirm_password = forms.CharField(widget=forms.PasswordInput, label="Repeat Password")
+
+    def clean(self, *args, **kwargs):
+        username = self.cleaned_data.get("user")
+        password1 = self.cleaned_data.get("password")
+        password2 = self.cleaned_data.get("confirm_password")
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            self.add_error('email', "User is already registered.")
+        if User.objects.filter(username=username).exists():
+            self.add_error('user', "User is already registered.")
+        if password1 != password2:
+            self.add_error('password', "password do not match")
+            self.add_error('confirm_password', "password do not match")
+        
+        return super(RegistrationForm, self).clean(*args, **kwargs)
+

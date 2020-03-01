@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <button class="navbar-toggler btn btn-primary" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon bg-primary"></span>
       </button>
@@ -6,39 +6,39 @@
       <div class="collapse navbar-collapse ml-auto" id="navbarsExample04">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link text-primary" href="{% url 'shop:index' %}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-light" href="{% url 'shop:index' %}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:about' %}">About</a>
+            <a class="nav-link text-light" href="{% url 'shop:about' %}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:enquiry' %}">Enquiry</a>
+            <a class="nav-link text-light" href="{% url 'shop:enquiry' %}">Enquiry</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:services' %}">Services</a>
+            <a class="nav-link text-light" href="{% url 'shop:services' %}">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:contact' %}">Contact</a>
+            <a class="nav-link text-light" href="{% url 'shop:contact' %}">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:demand' %}">Demand</a>
+            <a class="nav-link text-light" href="{% url 'shop:demand' %}">Demand</a>
           </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-            <a class="nav-link text-primary" href="{% url 'shop:inventory_management' %}">Stock</a>
+            <a class="nav-link text-light" href="{% url 'shop:inventory_management' %}">Stock</a>
           </li>
             <li class="nav-item">
-                <a class="nav-link text-primary" href="{% url 'shop:item_list' %}">Detail</a>
+                <a class="nav-link text-light" href="{% url 'shop:item_list' %}">Detail</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-primary" href="{% url 'shop:notice' %}">Notice</a>
+              <a class="nav-link text-light" href="{% url 'shop:notice' %}">Notice</a>
           </li>
             {% endif %}
         </ul>
 
       </div>
 
-      <div class="collapse navbar-collapse justify-content-end mr-5" id="navbarsExample04">
+      <div class="text-light collapse navbar-collapse justify-content-end mr-5" id="navbarsExample04">
         <ul class="navbar-nav">
             {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -49,7 +49,7 @@
                 </li>
                 {% else %}
         <li class="nav-item">
-            <a class="" href="#"><i class="fas fa-user-plus fa-1x"> Sign Up</i></a>
+            <a class="" href="{% url 'shop:registration' %}"><i class="fas fa-user-plus fa-1x"> Sign Up</i></a>
           </li>&nbsp;&nbsp;&nbsp;
           <li class="nav-item">
             <a class="" href="{% url 'shop:login' %}"><i class="fas fa-sign-in-alt fa-1x"> Sign In</i></a>

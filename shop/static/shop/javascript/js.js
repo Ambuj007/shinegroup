@@ -120,13 +120,10 @@ $( document ).ready(function() {
     //var xx= $("td > input").get();
     //console.log(xx.length);
 
-    $( "label" ).each(function( index ) {
-        $( this ).addClass("text-light font-weight-bold");
-    });
-    //var xx = document.getElementsByTagName("td > input");
-    //if ($("td > input").val() == "")
-      //  $("td > input").removeAttr("required")
+    // $( "label" ).each(function( index ) {
 
+    //     $( this ).addClass("text-dark font-weight-bold");
+    // });
 
 
 });
