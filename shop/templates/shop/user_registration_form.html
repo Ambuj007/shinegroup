@@ -1,0 +1,62 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+
+    <div class="container-fluid marketing mb-5">
+        <div class="row">
+            <div class="text-light offset-lg-2 offset-md-2 col-lg-8 col-md-8 col-sm-12 col-xs-12 pt-5">
+                <div class="card card-signup bg-dark">
+                    <div class="card-body">
+                      <h4 class="card-title text-center text-light"><i class="fas fa-user-plus fa-2x"></i></h4>
+                      <form class="text-light form-signin form-control-sm" name="login" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                {{ form.first_name | as_crispy_field  }}
+                            </div>
+                            <div class="col">
+                                {{ form.last_name | as_crispy_field  }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ form.user | as_crispy_field   }}
+                            </div>
+                            <div class="col">
+                                {{ form.email | as_crispy_field   }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{ form.password | as_crispy_field   }}
+                            </div>
+                            <div class="col">
+                                {{ form.confirm_password | as_crispy_field   }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <button class="btn btn-sm btn-primary btn-block" type="submit"><i class="fas fa-user-plus fa-1x"> Register </i></button>
+                            </div>
+                        </div>
+                        
+                            <!-- {{ form|crispy }}
+                        <br><br>
+                        <button class="btn btn-sm btn-primary btn-block text-uppercase" type="submit">Sign Up</button>
+                         -->
+                      </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+
+{% endblock %}
+
+<form>
+    {% csrf_token %}
+    
+</form>

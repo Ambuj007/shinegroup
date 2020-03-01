@@ -10,7 +10,7 @@ class Stock(models.Model):
     item                = models.CharField(max_length=120, blank=True)
     item_type           = models.CharField(max_length=120)
     item_specification  = models.CharField(max_length=120, default='N/A')
-    model_no            = models.CharField(max_length=120, blank=True)
+    model_no            = models.CharField(max_length=50, blank=True)
     purchase_price      = models.DecimalField(max_digits=10, decimal_places=2)
     selling_price       = models.DecimalField(max_digits=10, decimal_places=2)
 

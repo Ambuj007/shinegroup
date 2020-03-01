@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^notice', NoticeView.as_view(), name = "notice"),
     url(r'^inventory_detail', ItemListView.as_view(), name = "item_list"),
     url(r'^accounts/login', LoginView.as_view(), name = "login"),
+    url(r'^accounts/registration', RegistrationView, name = "registration"),
     #url(r'^delete/(?P<pk>.*)', DeleteItem.as_view(), name = "delete"),
     url(r'^deletee/(?P<pk>.*)', DeleteItemView, name = "delete"),
     url(r'^update/(?P<pk>.*)', ItemUpdateView.as_view(), name = "update"),

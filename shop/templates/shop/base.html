@@ -16,10 +16,9 @@
     
 
 </head>
-<body class="">
+<body>
+    <div class="container-fluid img-responsive bg-image">
 
-        <div class="container-fluid img-responsive bg-image">
-    
     {% if request.path == '/accounts/login' %}
         {% include "shop/header.html" %}
     {% else %}
@@ -29,8 +28,8 @@
         {% block main_content %}
         {% endblock %}
        
-    {% include "shop/footer.html" %}
-    <br>
+        {% include "shop/footer.html" %}
+        
 </div>
-  </body>
+</body>
 </html>

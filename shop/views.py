@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ContactForm, StockForm, LoginForm, DemandForm
+from .forms import ContactForm, StockForm, LoginForm, DemandForm, RegistrationForm
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Stock, Notice, Demand
@@ -14,7 +14,8 @@ from django.contrib import messages
 from django.contrib.auth import (
     authenticate,
     login,
-    logout
+    logout,
+    models
 )
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
@@ -29,12 +30,6 @@ def DeleteItemView(request, pk=None):
     item = Stock.objects.get(id=pk)
     item.delete()
     return redirect('../inventory_detail')
-
-class DeleteItem(DeleteView):
-    model = Stock
-    template_name = 'shop/item_detail.html'
-    success_url = '../inventory_detail'
-
 
 #Item Detail List View
 
@@ -72,25 +67,18 @@ def demand_view(request):
 def demand_download_view(request):
     response = HttpResponse(content_type = 'application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename="On_Demand.xls"'
-    
     wbook = xlwt.Workbook(encoding = 'utf-8')
     wbook_sheet = wbook.add_sheet('On Demand requirements')
-
     row_num = 0
-
     font_style = xlwt.XFStyle()
     font_style.font.bold=True
 
     columns = ['SL No.','Item', 'Quantity',]
-
     for col_num in range(len(columns)):
         wbook_sheet.write(row_num, col_num, columns[col_num], font_style)
-
     font_style = xlwt.XFStyle()
-
-
     object = Demand.objects.all().values_list('item', 'quantity')
-    
+
     for row in object:
         row_num += 1
         new_row = [
@@ -100,9 +88,7 @@ def demand_download_view(request):
         ]
         for col_num in range(len(new_row)):
             wbook_sheet.write(row_num, col_num, new_row[col_num], font_style)
-
     wbook.save(response)
-    
     return response
 
 
@@ -111,7 +97,6 @@ class ItemUpdateView(UpdateView):
     template_name='shop/item_update.html'
     model = Stock
     fields = ['category','brand','item','item_type','model_no','purchase_price','selling_price']
-    #success_url = '../inventory_detail'
     def form_valid(self,form):
         purchase = form.cleaned_data.get('purchase_price')
         selling = form.cleaned_data.get('selling_price')
@@ -155,7 +140,7 @@ def enquiry(request):
             Q(brand__icontains=search_item) |
             Q(item__icontains=search_item) |
             Q(model_no__icontains=search_item)
-        )
+        ) 
         context = {
             'search_item' : search_item,
             'object' : result
@@ -183,6 +168,21 @@ def search(request):
     else:
         return redirect('detail')
 
+def RegistrationView(request):
+    form = RegistrationForm()
+    
+    if request.POST:
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = request.POST['user']
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            email = request.POST['email']
+            password= request.POST['password']
+            user = models.User.objects.create_user(username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+            user.save()
+            print("user created")
+    return render(request, 'shop/user_registration_form.html',{"form":form})
 
 class LoginView(FormView):
     form_class = LoginForm

@@ -36,6 +36,7 @@
                                 <th scope="col">Model No.</th>
                                 <th scope="col">Purchase Price</th>
                                 <th scope="col">Selling Price</th>
+                                <th scope="col">Created By</th>
                                 <th scope="col">Edit/Delete</th>
 
                             </tr>
@@ -43,7 +44,7 @@
                             <tbody>
                             {% for item in object %}
 
-                                    <tr class="bg-info text-light">
+                                    <tr class="bg-light text-dark">
                                     <th scope="row">{{ forloop.counter}}</th>
                                     <td>{{ item.id }}</td>
                                     <td>{{ item.category }}</td>
@@ -54,6 +55,7 @@
                                     <td>{{ item.model_no }}</td>
                                     <td>{{ item.purchase_price }}</td>
                                     <td>{{ item.selling_price }}</td>
+                                    <td>{{ request.user }}</td>
                                     <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="{% url 'shop:delete' item.id %}">
