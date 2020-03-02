@@ -36,7 +36,6 @@
                                 <th scope="col">Model No.</th>
                                 <th scope="col">Purchase Price</th>
                                 <th scope="col">Selling Price</th>
-                                <th scope="col">Created By</th>
                                 <th scope="col">Edit/Delete</th>
 
                             </tr>
@@ -55,8 +54,7 @@
                                     <td>{{ item.model_no }}</td>
                                     <td>{{ item.purchase_price }}</td>
                                     <td>{{ item.selling_price }}</td>
-                                    <td>{{ request.user }}</td>
-                                    <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-light"></i></a>
+                                    <td><a href="{% url 'shop:update' item.id %}"><i class="fas fa-edit text-dark"></i></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="{% url 'shop:delete' item.id %}">
                                             <i class="fas fa-trash-alt text-danger" aria-hidden="true"></i></a></td>
