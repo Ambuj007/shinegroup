@@ -23,7 +23,6 @@
           <li class="nav-item">
             <a class="nav-link text-light" href="{% url 'shop:demand' %}">Demand</a>
           </li>
-            {% if user.is_authenticated %}
             <li class="nav-item">
             <a class="nav-link text-light" href="{% url 'shop:inventory_management' %}">Stock</a>
           </li>
@@ -33,7 +32,6 @@
             <li class="nav-item">
               <a class="nav-link text-light" href="{% url 'shop:notice' %}">Notice</a>
           </li>
-            {% endif %}
         </ul>
 
       </div>

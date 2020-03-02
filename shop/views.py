@@ -20,12 +20,14 @@ from django.contrib.auth import (
 from django.contrib.auth.decorators import login_required
 from django.utils.http import is_safe_url
 import xlwt
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
 
 # Create your views here.
 #DELETE View
+@login_required
 def DeleteItemView(request, pk=None):
     item = Stock.objects.get(id=pk)
     item.delete()
@@ -33,13 +35,13 @@ def DeleteItemView(request, pk=None):
 
 #Item Detail List View
 
-class ItemListView(ListView):
+class ItemListView(LoginRequiredMixin,ListView):
     template_name='shop/item_detail.html'
     model = Stock
     context_object_name = 'object'
 
 
-class NoticeView(CreateView):
+class NoticeView(LoginRequiredMixin,CreateView):
     template_name='shop/notice.html'
     model = Notice
     fields = ['notice']
@@ -63,7 +65,7 @@ def demand_view(request):
     demands_all = Demand.objects.all()
     return render(request, 'shop/demand.html', {'form':form, 'object':demands_all})
 
-
+@login_required
 def demand_download_view(request):
     response = HttpResponse(content_type = 'application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename="On_Demand.xls"'
@@ -93,7 +95,7 @@ def demand_download_view(request):
 
 
 #Update View
-class ItemUpdateView(UpdateView):
+class ItemUpdateView(LoginRequiredMixin,UpdateView):
     template_name='shop/item_update.html'
     model = Stock
     fields = ['category','brand','item','item_type','model_no','purchase_price','selling_price']
@@ -150,7 +152,7 @@ def enquiry(request):
 
     #return render(request, 'shop/enquiry.html')
 
-
+@login_required
 def search(request):
     if request.GET:
         search_item = request.GET['search_item']
@@ -206,7 +208,7 @@ class LoginView(FormView):
                 return redirect("/")
         return super(LoginView, self).form_invalid(form)
 
-
+@login_required
 def logout_view(request):
     logout(request)
     return redirect("/")
@@ -245,7 +247,7 @@ def contact(request):
     return render(request, 'shop/contact.html',  {'form':form})
 
 
-class StockCreateView(FormView):
+class StockCreateView(LoginRequiredMixin,FormView):
     template_name = 'shop/inventory_management.html'
     form_class = StockForm
     success_url = "../inventory_management"

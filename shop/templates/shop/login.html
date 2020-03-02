@@ -9,11 +9,11 @@
                 <div class="card card-signin my-5 bg-dark">
                     <div class="card-body">
                       <h4 class="card-title text-center text-light">Sign In</h4>
-                      <form class="form-signin" name="login" action="" method="POST">
+                      <form class="text-light form-signin" name="login" action="" method="POST">
                         {% csrf_token %}
                             {{ form|crispy }}
-                        <br><br>
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <br>
+                        <button class="btn btn-sm btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                         
                       </form>
                     </div>

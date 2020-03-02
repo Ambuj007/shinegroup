@@ -60,9 +60,9 @@ class StockForm(forms.Form):
         selling_price = self.cleaned_data.get("selling_price")
         purchase_price = self.cleaned_data.get("purchase_price")
         if selling_price == purchase_price:
-            raise forms.ValidationError("Isme koi fayada nahi hai")
+            self.add_error('selling_price',"Isme koi fayada nahi hai")
         elif selling_price < purchase_price:
-            raise forms.ValidationError("Ismein Tera Ghata")
+            self.add_error('selling_price',"Ismein Tera Ghata")
         return super(StockForm, self).clean(*args, **kwargs)
 
 
